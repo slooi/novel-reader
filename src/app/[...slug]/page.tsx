@@ -31,6 +31,20 @@ export default async function page({ params }: {
 		const novelTitle = slug[0]
 		const chapterName = slug[1]
 
+		// 
+		const dirEntries = await fs.readdir(PATH + novelTitle, { encoding: "utf-8", withFileTypes: true })
+		const dirItems = dirEntries
+			.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }))
+			.map(f => ({ clientPath: novelTitle + "/" + f.name, filename: f.name }))
+
+		// Get current index in dirItems to find previous and next chapters
+		const index = dirItems.findIndex(dirItem => dirItem.filename === chapterName);
+		const previousChapterName = dirItems[index - 1] !== undefined ? dirItems[index - 1].filename : null;
+		const nextChapterName = dirItems[index + 1] !== undefined ? dirItems[index + 1].filename : null;
+
+
+
+		// Read content of current chapter
 		const content = await fs.readFile(`${PATH}${novelTitle}/${chapterName}`, { encoding: "utf-8" })
 
 		const heading = content.split("\n").shift()
@@ -49,16 +63,20 @@ export default async function page({ params }: {
 			</div>
 
 			<div style={{ margin: "1rem 2rem", display: "flex", gap: "0.25rem", justifyContent: "end" }}>
-				<button style={{ borderRadius: "0.25rem", backgroundColor: "#222", border: "1px solid #fff3" }}>
-					<svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-					</svg>
-				</button>
-				<button style={{ borderRadius: "0.25rem", backgroundColor: "#222", border: "1px solid #fff3" }}>
-					<svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<path d="M9 6L15 12L9 18" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-					</svg>
-				</button>
+				{previousChapterName && <Link href={previousChapterName}>
+					<button style={{ borderRadius: "0.25rem", backgroundColor: "#222", border: "1px solid #fff3" }}>
+						<svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+						</svg>
+					</button>
+				</Link>}
+				{nextChapterName && <Link href={nextChapterName}>
+					<button style={{ borderRadius: "0.25rem", backgroundColor: "#222", border: "1px solid #fff3" }}>
+						<svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M9 6L15 12L9 18" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+						</svg>
+					</button>
+				</Link>}
 			</div>
 			<br /><br /><br /><br /><br /><br />
 			<footer></footer>
