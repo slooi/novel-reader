@@ -1,13 +1,7 @@
 import fs from "fs/promises"
-import path from "path"
 import Link from "next/link"
-import dotenv from "dotenv"
-dotenv.config()
+import { PATH } from "../constants"
 
-const PATH = (() => {
-	if (typeof process.env.PUBLIC_FOLDER === "string" && process.env.PUBLIC_FOLDER.slice(-1) === "/") return process.env.PUBLIC_FOLDER
-	throw new Error("MISSING / AT END")
-})()
 
 
 export default async function page({ params }: {
