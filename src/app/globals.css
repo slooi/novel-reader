@@ -48,7 +48,6 @@ body {
 
 .reading-area {
   white-space: pre-wrap;
-  margin: 5rem 0.5rem 13rem 0.5rem;
   padding: 2rem;
   background-color: rgb(15, 15, 15);
 }
@@ -65,7 +64,5 @@ svg {
   .reading-area {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
-    margin-left: 0;
-    margin-right: 0;
   }
 }

@@ -36,6 +36,8 @@ export default async function page({ params }: {
 		const heading = content.split("\n").shift()
 		const chapterText = content.split("\n").slice(1)
 		return <div className="root">
+			<header></header>
+			<br /><br /><br />
 			<div className="reading-area">
 				<div>
 					<div style={{ fontSize: "1.25em", fontWeight: "600", textAlign: "center" }}>{heading}</div>
@@ -45,6 +47,21 @@ export default async function page({ params }: {
 					</div>
 				</div>
 			</div>
+
+			<div style={{ margin: "1rem 2rem", display: "flex", gap: "0.25rem", justifyContent: "end" }}>
+				<button style={{ borderRadius: "0.25rem", backgroundColor: "#222", border: "1px solid #fff3" }}>
+					<svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+					</svg>
+				</button>
+				<button style={{ borderRadius: "0.25rem", backgroundColor: "#222", border: "1px solid #fff3" }}>
+					<svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M9 6L15 12L9 18" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+					</svg>
+				</button>
+			</div>
+			<br /><br /><br /><br /><br /><br />
+			<footer></footer>
 		</div>
 	}
 
