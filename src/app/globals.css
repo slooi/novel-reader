@@ -40,6 +40,10 @@ html,
   box-sizing: border-box;
 }
 
+button {
+  cursor: pointer;
+}
+
 body {
   display: flex;
   justify-content: center;
