@@ -30,12 +30,7 @@ html,
 * {
   margin: 0;
   padding: 0;
-  color: rgb(241, 241, 241);
-  /* font-size: 1.1rem; */
-  /* font-family: Cambria; */
-  /* font-family: Inter, sans-serif; */
-  /* font-family: 'Robo';'Poppins'; */
-  /* font-size: 18px; */
+  color: rgb(245, 245, 245);
   font-size: 20px;
   box-sizing: border-box;
 }
